@@ -5,10 +5,8 @@ HybridAlgo::HybridAlgo(const string& key) : vigenere(key), key(key) {}
 bool HybridAlgo::encrypt(const string& text, const string& filename) {
      
     string shiftedText = RandomAsciiShift::encrypt(text);
-    
-    
-    string base64EncodedText = Base64::encode(shiftedText);
-    
+        
+    string base64EncodedText = Base64::encode(shiftedText); 
      
     string finalEncryptedText = vigenere.encrypt(base64EncodedText);
     

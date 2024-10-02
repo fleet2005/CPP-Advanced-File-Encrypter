@@ -70,7 +70,7 @@ bool encryptFile(const string& filename, bool encrypt)
 
         case 5: {
              
-            //Hybrid Algorithm
+            //Hybrid Algorithm 
         }
 
         default:
