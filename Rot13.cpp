@@ -8,7 +8,7 @@ bool Rot13::encrypt(const string& text, const string& filename) {
         } else if (c >= 'a' && c <= 'z') {
             c = ((c - 'a' + 13) % 26) + 'a';
         }
-    }
+    } 
     ofstream outFile("encrypted_" + filename);
     if (!outFile) {
         return false;

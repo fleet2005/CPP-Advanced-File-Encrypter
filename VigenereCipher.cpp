@@ -2,10 +2,12 @@
 #include <fstream>
 #include <cctype>
 
+using namespace std;
+
 VigenereCipher::VigenereCipher(const string& key) {
     for (char c : key) {
         if (isalpha(c)) {
-            this->key += toupper(c);
+            this->key += toupper(c);  
         }
     }
 }
@@ -20,22 +22,22 @@ bool VigenereCipher::encrypt(const string& text, const string& filename) {
             bool isUpper = isupper(c);
             c = toupper(c);
             int shift = key[keyIndex % keyLength] - 'A';
-            result += shiftChar(c, shift);
+            result += shiftChar(c, shift);  
             keyIndex++;
-            if (!isUpper) result.back() = tolower(result.back());
+            if (!isUpper) result.back() = tolower(result.back());  
         } else {
-            result += c;
+            result += c;  
         }
     }
 
     ofstream outFile("encrypted_" + filename);
     if (!outFile) {
-        return false;
+        return false;  
     }
 
     outFile << result;
     outFile.close();
-    
+
     return true;
 }
 
@@ -49,17 +51,17 @@ bool VigenereCipher::decrypt(const string& text, const string& filename) {
             bool isUpper = isupper(c);
             c = toupper(c);
             int shift = key[keyIndex % keyLength] - 'A';
-            result += shiftChar(c, -shift);
+            result += shiftChar(c, -shift);  
             keyIndex++;
-            if (!isUpper) result.back() = tolower(result.back());
+            if (!isUpper) result.back() = tolower(result.back());  
         } else {
-            result += c;
+            result += c;  
         }
     }
 
     ofstream outFile("decrypted_" + filename);
     if (!outFile) {
-        return false;
+        return false;  
     }
 
     outFile << result;
@@ -69,5 +71,7 @@ bool VigenereCipher::decrypt(const string& text, const string& filename) {
 }
 
 char VigenereCipher::shiftChar(char c, int shift) {
-    return (c - 'A' + shift + 26) % 26 + 'A';
+     
+    char shifted = (c - 'A' + shift + 26) % 26 + 'A';
+    return shifted;
 }

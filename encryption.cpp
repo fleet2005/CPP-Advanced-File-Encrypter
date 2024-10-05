@@ -13,13 +13,13 @@ bool encryptFile(const string& filename, bool encrypt)
     inFile.close();
 
     int choice = 0;
-    cout << "Enter Your choice (1: Vigenere, 2: Base64, 3: Caesar, 4: Rot13, 5: Hybrid): ";
+    cout << "Enter Your choice (1: Vigenere, 2: ROT-13, 3: Caesar, 4: Base-64, 5: Hybrid): ";
     cin >> choice;
 
     switch (choice)
     {
         case 1: {
-            VigenereCipher vigenereCipher("YOUR_KEY_HERE");
+            VigenereCipher vigenereCipher("CBA");
             if (encrypt) {
                 if (!vigenereCipher.encrypt(content, filename)) {
                     return false;
@@ -70,7 +70,18 @@ bool encryptFile(const string& filename, bool encrypt)
 
         case 5: {
              
-            //Hybrid Algorithm 
+            HybridAlgo hybridAlgo("KEY"); 
+
+            if (encrypt) {
+                if (!hybridAlgo.encrypt(content, filename)) {
+                    return false;
+                }
+            } else {
+                if (!hybridAlgo.decrypt(content, filename)) {
+                    return false;
+                }
+            }
+            break;
         }
 
         default:
