@@ -23,7 +23,6 @@ bool RandomAsciiShift::encrypt(const string& text, const string& filename) {
 
     outFile << result;
     outFile.close();
-    
     return true;
 }
 

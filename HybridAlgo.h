@@ -9,9 +9,9 @@ public:
      
     HybridAlgo(const string& key); 
      
-    bool encrypt(const string& text, const string& filename);
+    bool encrypt(const string& text, const string& filename, int& shiftValue);
      
-    bool decrypt(const string& text, const string& filename);
+    bool decrypt(const string& text, const string& filename, int& shiftValue);
 
 private:
     string key;   

@@ -4,11 +4,12 @@
 #include <vector>
 #include <cctype>
 #include <cstdlib>  
+#include <ctime>    // For time(0) to seed rand()
 
 using namespace std;
 
 HybridAlgo::HybridAlgo(const string& key) {
-   
+    // Convert the key to uppercase for Vigenere cipher
     for (char c : key) {
         if (isalpha(c)) {
             this->key += toupper(c);
@@ -16,12 +17,16 @@ HybridAlgo::HybridAlgo(const string& key) {
     }
 }
 
-// Encrypt function  Random ASCII Shift, Base64 Encode, and Vigenere Cipher
-bool HybridAlgo::encrypt(const string& text, const string& filename) {
-    // Random ASCII Shift
+// Encrypt function with a single Random ASCII Shift, Base64 Encode, and Vigenere Cipher
+bool HybridAlgo::encrypt(const string& text, const string& filename, int& shiftValue) {
+    // Initialize random seed and generate a single random shift value
+    srand(time(0));
+    shiftValue = rand() % 256;
+
+    // Random ASCII Shift using the single shift value
     string shiftedText = text;
     for (char& c : shiftedText) {
-        c = static_cast<char>((c + rand() % 256) % 256); 
+        c = static_cast<char>((c + shiftValue) % 256);
     }
 
     // Base64 Encoding
@@ -61,18 +66,19 @@ bool HybridAlgo::encrypt(const string& text, const string& filename) {
         }
     }
 
-    
+    // Save encrypted text to file
     ofstream outFile("encrypted_" + filename);
     if (!outFile) {
         return false; 
     }
     outFile << finalEncryptedText;
     outFile.close();
+    cout<<"\n Your Shift Value is : "<< shiftValue << endl;
     return true;
 }
 
-
-bool HybridAlgo::decrypt(const string& text, const string& filename) {
+// Decrypt function using the provided shift value
+bool HybridAlgo::decrypt(const string& text, const string& filename, int& shiftValue) {
     // Reverse Vigenere Cipher
     string base64DecodedText;
     int keyIndex = 0;
@@ -108,13 +114,13 @@ bool HybridAlgo::decrypt(const string& text, const string& filename) {
         }
     }
 
-    // Reverse Random ASCII Shift
+    // Reverse Random ASCII Shift using the provided single shift value
     string originalText = shiftedText;
     for (char& c : originalText) {
-        c = static_cast<char>((c - rand() % 256 + 256) % 256);  
+        c = static_cast<char>((c - shiftValue + 256) % 256);
     }
 
-    
+    // Save decrypted text to file
     ofstream outFile("decrypted_" + filename);
     if (!outFile) {
         return false; 

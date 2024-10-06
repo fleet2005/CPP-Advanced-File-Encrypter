@@ -19,7 +19,10 @@ bool encryptFile(const string& filename, bool encrypt)
     switch (choice)
     {
         case 1: {
-            VigenereCipher vigenereCipher("CBA");
+            string temp;
+            cout<<"\nPlease Enter the KEY\n"<<endl;
+            cin>>temp;
+            VigenereCipher vigenereCipher(temp);
             if (encrypt) {
                 if (!vigenereCipher.encrypt(content, filename)) {
                     return false;
@@ -47,7 +50,10 @@ bool encryptFile(const string& filename, bool encrypt)
         }
 
        case 3: {
-            CaesarCipher caesarCipher(2);  //Enter shift key
+            int temp1;
+            cout<<"\nPlease Enter the Shifting Value\n"<<endl;
+            cin>>temp1;
+            CaesarCipher caesarCipher(temp1);  
             if (!caesarCipher.performCaesarCipher(content, encrypt, filename)) {  
                 return false;
             }
@@ -70,14 +76,23 @@ bool encryptFile(const string& filename, bool encrypt)
 
         case 5: {
              
-            HybridAlgo hybridAlgo("KEY"); 
+            string temp3;
+            cout<<"\nPlease Enter the KEY\n"<<endl;
+            cin>>temp3;
+
+            HybridAlgo hybridAlgo(temp3); 
+            int val = 0;
 
             if (encrypt) {
-                if (!hybridAlgo.encrypt(content, filename)) {
+                int shiftValue = 0;
+                if (!hybridAlgo.encrypt(content, filename, shiftValue)) {
                     return false;
                 }
-            } else {
-                if (!hybridAlgo.decrypt(content, filename)) {
+            } else { 
+                int shiftValue;  
+                cout << "\nEnter the shift value used during encryption: "<<endl;
+                cin >> shiftValue;
+                if (!hybridAlgo.decrypt(content, filename, shiftValue)) {
                     return false;
                 }
             }
