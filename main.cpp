@@ -6,7 +6,8 @@ using namespace std;
 
 int main()
 {
-
+    start();
+   
     string filename;
     char mode;
 
@@ -44,6 +45,8 @@ int main()
     {
         cerr<<"Please enter either 'e' or 'd' "<<endl;
     }
+
+    end();
 
     return 0;
 }

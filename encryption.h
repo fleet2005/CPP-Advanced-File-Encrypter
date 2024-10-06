@@ -9,6 +9,8 @@
 #include "Rot13.h"
 #include "HybridAlgo.h"
 #include "CaesarCipher.h"
+#include "Starter.h"
+#include "End.h"
 
 using namespace std;
 
