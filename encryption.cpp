@@ -21,6 +21,7 @@ bool encryptFile(const string& filename, bool encrypt)
     3: Caesar Cipher
     4: Base-64 Encryption
     5: Hybrid Encryption
+    6: Key Strength Checker
      )";
 
     cin >> choice;
@@ -111,6 +112,11 @@ bool encryptFile(const string& filename, bool encrypt)
                 }
             }
             break;
+        }
+
+       case 6: {
+            evaluatePasswordStrength();
+            break;  
         }
 
         default:

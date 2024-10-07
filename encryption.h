@@ -12,6 +12,7 @@
 #include "Starter.h"
 #include "End.h"
 #include "info.h"
+#include "Strength.h"
 
 using namespace std;
 
