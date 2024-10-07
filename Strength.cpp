@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void evaluatePasswordStrength() {
+void evaluateKeyStrength() {
     string key;
     cout << "Enter your encryption key: ";
     cin >> key;
@@ -39,7 +39,7 @@ void evaluatePasswordStrength() {
     if (specialCount > 0) strength++;
 
     cout<<"Your password strength is : ";
-    
+
     switch (strength) {
         case 1:
             cout<<"Weak\n\n"<<endl;

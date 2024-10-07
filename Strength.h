@@ -3,6 +3,6 @@
 
 #include <string>
 
-void evaluatePasswordStrength();
+void evaluateKeyStrength();
 
 #endif

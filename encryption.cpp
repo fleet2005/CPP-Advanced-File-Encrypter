@@ -115,7 +115,7 @@ bool encryptFile(const string& filename, bool encrypt)
         }
 
        case 6: {
-            evaluatePasswordStrength();
+            evaluateKeyStrength();
             break;  
         }
 
