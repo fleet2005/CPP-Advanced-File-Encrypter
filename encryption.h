@@ -11,6 +11,7 @@
 #include "CaesarCipher.h"
 #include "Starter.h"
 #include "End.h"
+#include "info.h"
 
 using namespace std;
 

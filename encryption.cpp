@@ -13,11 +13,25 @@ bool encryptFile(const string& filename, bool encrypt)
     inFile.close();
 
     int choice = 0;
-    cout << "Enter Your choice (1: Vigenere, 2: ROT-13, 3: Caesar, 4: Base-64, 5: Hybrid): ";
+    cout << R"(
+    Enter Your choice of Encryption/Decryption Algorithm :
+    0: Help Manual 
+    1: Vigenere Cipher
+    2: ROT-13 Encryption
+    3: Caesar Cipher
+    4: Base-64 Encryption
+    5: Hybrid Encryption
+     )";
+
     cin >> choice;
 
     switch (choice)
     {
+        case 0: {
+            info();
+            break;
+        }
+        
         case 1: {
             string temp;
             cout<<"\nPlease Enter the KEY\n"<<endl;
