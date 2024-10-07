@@ -21,11 +21,11 @@ int main()
     {
         if(encryptFile(filename, true))
         {
-            cout<< "Encryption Done"<<endl;
+            cout<< "\n\nDone"<<endl;
         }
         else
         {
-            cerr<< "Encryption failed"<<endl;
+            cerr<< "\n\nEncryption failed"<<endl;
         }
     }
 
@@ -33,11 +33,11 @@ int main()
     {
         if(encryptFile(filename,false))
         {
-            cout<< "Decryption Done"<<endl;
+            cout<< "\n\nDecryption Done"<<endl;
         }   
         else
         {
-            cerr<<"Decryption Failed"<<endl;
+            cerr<<"\n\nDecryption Failed"<<endl;
         }
     }
 
@@ -47,6 +47,10 @@ int main()
     }
 
     end();
+
+    cout<<"Press any key to Terminate\n"<<endl;
+    char x;
+    cin>>x;
 
     return 0;
 }

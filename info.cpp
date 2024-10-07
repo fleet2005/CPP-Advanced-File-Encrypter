@@ -10,10 +10,10 @@ cout << R"(
         ||                           ENCRYPTION APP HELP MANUAL                   ||
         ||========================================================================||
         ||                                                                        ||
-        || 1. Vigenère Cipher                                                     ||
+        || 1. Vigenere Cipher                                                     ||
         ||    ----------------                                                    ||
         ||    What it does:                                                       ||
-        ||    The Vigenère cipher is a method of encrypting alphabetic text by    ||
+        ||    The Vigenere cipher is a method of encrypting alphabetic text by    ||
         ||    using a series of different Caesar ciphers based on the letters of  ||
         ||    a keyword.                                                          ||
         ||                                                                        ||
@@ -96,9 +96,6 @@ cout << R"(
         )" << endl;
 
         cout<<"\n\n\n"<<endl;
-        cout<<"Press any key to Terminate\n"<<endl;
-        char x;
-        cin>>x;
 
     return;
 

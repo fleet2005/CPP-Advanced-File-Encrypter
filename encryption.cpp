@@ -116,6 +116,7 @@ bool encryptFile(const string& filename, bool encrypt)
         default:
             cout << "Invalid choice." << endl;
             return false;
+
     }
 
     return true;
