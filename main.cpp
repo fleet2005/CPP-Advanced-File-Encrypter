@@ -14,6 +14,10 @@ int main()
     cout<<"Enter the filename: ";
     getline(cin >> ws, filename);
 
+    cout<<"\n\n";
+    
+    Sleep(3000);
+
     cout<< "Encrypt(e) or Decrypt(d)?";
     cin>>mode;
 
@@ -21,7 +25,7 @@ int main()
     {
         if(encryptFile(filename, true))
         {
-            cout<< "\n\nDone"<<endl;
+            cout<<"";
         }
         else
         {
@@ -48,7 +52,7 @@ int main()
 
     end();
 
-    cout<<"Press any key to Terminate\n"<<endl;
+    cout<<"Press any key and Enter to Terminate\n"<<endl;
     char x;
     cin>>x;
 

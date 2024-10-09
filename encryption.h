@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <windows.h>
 #include "VigenereCipher.h"
 #include "Base64.h"
 #include "Rot13.h"
