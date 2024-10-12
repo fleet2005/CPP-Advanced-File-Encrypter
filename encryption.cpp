@@ -1,11 +1,11 @@
 #include "encryption.h"
-using namespace std;
-
-bool encryptFile(const string& filename, bool encrypt)
-{
+ 
+ 
+bool encryptFile(const string& filename, bool encrypt) {
     ifstream inFile(filename);
-    
+
     if (!inFile) {
+        cout << "Error opening file!" << endl;
         return false;
     }
 
@@ -13,8 +13,12 @@ bool encryptFile(const string& filename, bool encrypt)
     inFile.close();
 
     int choice = 0;
-    cout << R"(
-    Enter Your choice of Encryption/Decryption Algorithm :
+    while (true) {  
+        Sleep(2000);
+        cout<<"\n\n\n";
+        cout << R"(
+    Enter Your Choice of Encryption/Decryption Algorithm:
+    
     0: Help Manual 
     1: Vigenere Cipher
     2: ROT-13 Encryption
@@ -22,108 +26,99 @@ bool encryptFile(const string& filename, bool encrypt)
     4: Base-64 Encryption
     5: Hybrid Encryption
     6: Key Strength Checker
-     )";
+    7: Exit
+    )";
 
-    cin >> choice;
+        cout << "\n\nChoice: ";
+        cin >> choice;
 
-    switch (choice)
-    {
-        case 0: {
-            info();
-            break;
-        }
-        
-        case 1: {
-            string temp;
-            cout<<"\nPlease Enter the KEY\n"<<endl;
-            cin>>temp;
-            VigenereCipher vigenereCipher(temp);
-            if (encrypt) {
-                if (!vigenereCipher.encrypt(content, filename)) {
-                    return false;
-                }
-            } else {
-                if (!vigenereCipher.decrypt(content, filename)) {
-                    return false;
-                }
+        switch (choice) {
+            case 0: {
+                info();   
+                break;  
             }
-            break;
-        }
+            case 1: {
+                string key;
+                cout << "Enter the KEY: ";
+                cin >> key;
+                VigenereCipher vigenereCipher(key);
 
-        case 2: {
-            Rot13 rot13;
-            if (encrypt) {
-                if (!rot13.encrypt(content, filename)) {
-                    return false;
+                if (encrypt) {
+                    if (!vigenereCipher.encrypt(content, filename)) {
+                        return false;
+                    }
+                } else {
+                    if (!vigenereCipher.decrypt(content, filename)) {
+                        return false;
+                    }
                 }
-            } else {
-                if (!rot13.decrypt(content, filename)) {
-                    return false;
-                }
+                return true;
+                break;
             }
-            break;
-        }
-
-       case 3: {
-            int temp1;
-            cout<<"\nPlease Enter the Shifting Value\n"<<endl;
-            cin>>temp1;
-            CaesarCipher caesarCipher(temp1);  
-            if (!caesarCipher.performCaesarCipher(content, encrypt, filename)) {  
-                return false;
+            case 2: {
+                Rot13 rot13;
+                if (encrypt) {
+                    if (!rot13.encrypt(content, filename)) return false;
+                } else {
+                    if (!rot13.decrypt(content, filename)) return false;
+                }
+                return true;
+                break;
             }
-            break;  
-        }
+            case 3: {
+                int shift;
+                cout << "Enter the Shifting Value: ";
+                cin >> shift;
+                CaesarCipher caesarCipher(shift);
 
-        case 4: {
-            Base64 base64;
-            if (encrypt) {
-                if (!base64.encrypt(content, filename)) {
+                if (!caesarCipher.performCaesarCipher(content, encrypt, filename)) {
                     return false;
                 }
-            } else {
-                if (!base64.decrypt(content, filename)) {
-                    return false;
-                }
+                return true;
+                break;
             }
-            break;
-        }
-
-        case 5: {
-             
-            string temp3;
-            cout<<"\nPlease Enter the KEY\n"<<endl;
-            cin>>temp3;
-
-            HybridAlgo hybridAlgo(temp3); 
-            int val = 0;
-
-            if (encrypt) {
+            case 4: {
+                Base64 base64;
+                if (encrypt) {
+                    if (!base64.encrypt(content, filename)) return false;
+                } else {
+                    if (!base64.decrypt(content, filename)) return false;
+                }
+                return true;
+                break;
+            }
+            case 5: {
+                string key;
+                cout << "Enter the KEY: ";
+                cin >> key;
+                HybridAlgo hybridAlgo(key);
                 int shiftValue = 0;
-                if (!hybridAlgo.encrypt(content, filename, shiftValue)) {
-                    return false;
+
+                if (encrypt) {
+                    if (!hybridAlgo.encrypt(content, filename, shiftValue)) return false;
+                } else {
+                    cout << "Enter the shift value used during encryption: ";
+                    cin >> shiftValue;
+                    if (!hybridAlgo.decrypt(content, filename, shiftValue)) return false;
                 }
-            } else { 
-                int shiftValue;  
-                cout << "\nEnter the shift value used during encryption: "<<endl;
-                cin >> shiftValue;
-                if (!hybridAlgo.decrypt(content, filename, shiftValue)) {
-                    return false;
-                }
+                return true;
+                break;
             }
-            break;
+            case 6: {
+                evaluateKeyStrength();   
+                return true;
+                break;
+            }
+            case 7: {
+                cout << "Exiting program. Goodbye!" << endl;
+                return true;   
+            }
+            default: {
+                cout << "Invalid choice. Please try again." << endl;
+                break;
+            }
         }
-
-       case 6: {
-            evaluateKeyStrength();
-            break;  
-        }
-
-        default:
-            cout << "Invalid choice." << endl;
-            return false;
-
     }
-
     return true;
 }
+
