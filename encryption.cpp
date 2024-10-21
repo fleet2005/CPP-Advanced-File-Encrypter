@@ -111,6 +111,7 @@ bool encryptFile(const string& filename, bool encrypt) {
             }
             case 7: {
                 cout << "Exiting program. Goodbye!" << endl;
+                Sleep(1000);
                 return true;   
             }
             default: {

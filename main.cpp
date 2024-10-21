@@ -18,7 +18,7 @@ int main()
     
     Sleep(3000);
 
-    cout<< "Encrypt(e) or Decrypt(d)?";
+    cout<< "Please enter (e) for Encryption or (d) for Decryption: ";
     cin>>mode;
 
     if(mode == 'e' || mode == 'E')
