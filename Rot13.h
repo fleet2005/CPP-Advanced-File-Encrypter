@@ -1,7 +1,7 @@
 #ifndef ROT13_H
 #define ROT13_H
 
-#include <string>
+#include <string> //string result
 #include <fstream>
 using namespace std;
 

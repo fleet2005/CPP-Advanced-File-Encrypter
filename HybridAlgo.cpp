@@ -1,9 +1,9 @@
 #include "HybridAlgo.h"
-#include <fstream>
-#include <iostream>
-#include <vector>
-#include <cctype>
-#include <cstdlib>  
+#include <fstream> //for file handling
+#include <iostream> //cincout
+#include <vector> //for base 64 decoding
+#include <cctype> // For tolower and toupper
+#include <cstdlib>   // for rand() and srand()
 #include <ctime>    // For time(0) to seed rand()
 
 using namespace std;
@@ -38,7 +38,7 @@ bool HybridAlgo::encrypt(const string& text, const string& filename, int& shiftV
         val = (val << 8) + c;
         valb += 8;
         while (valb >= 0) {
-            base64EncodedText.push_back(base64_chars[(val >> valb) & 0x3F]);
+            base64EncodedText.push_back(base64_chars[(val >> valb) & 0x3F]); //00111111 6 bits
             valb -= 6;
         }
     }
@@ -99,7 +99,7 @@ bool HybridAlgo::decrypt(const string& text, const string& filename, int& shiftV
     // Base64 Decoding
     static const string base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     vector<int> base64_map(256, -1);
-    for (int i = 0; i < 64; i++) base64_map[base64_chars[i]] = i;
+    for (int i = 0; i < 64; i++) base64_map[base64_chars[i]] = i; //101 vc //100 str
 
     string shiftedText;
     int val = 0;
@@ -109,7 +109,7 @@ bool HybridAlgo::decrypt(const string& text, const string& filename, int& shiftV
         val = (val << 6) + base64_map[c];
         valb += 6;
         if (valb >= 0) {
-            shiftedText.push_back(char((val >> valb) & 0xFF));
+            shiftedText.push_back(char((val >> valb) & 0xFF)); // 11111111 8 bits
             valb -= 8;
         }
     }

@@ -1,9 +1,9 @@
 #include <iostream>
 #include "encryption.h"
-#include <string>
+#include <string> //for getline
 
 using namespace std;
-
+//initially unit testing and then incremental integration testing
 int main()
 {
     start();

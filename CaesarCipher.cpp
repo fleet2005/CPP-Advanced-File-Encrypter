@@ -4,6 +4,8 @@
 #include <fstream>
 
 using namespace std;
+//The scope resolution operator (::) is essential for 
+//defining member functions and constructors outside of the class declaration.
 
 CaesarCipher::CaesarCipher(int shift) : shift(shift) {} //1st shift is parameter value, 2nd is private member variable which stores the shift value, and 3rd is again the parameter value which gets assigned to the 2nd shift(private member)
 //same as this->shift = shift;

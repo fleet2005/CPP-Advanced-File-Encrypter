@@ -10,11 +10,13 @@ void evaluateKeyStrength() {
     cin >> key;
 
     int lowerCount = 0, upperCount = 0, specialCount = 0;
+    int length =0;
 
     Sleep(2000);
     
-    // Evaluate the key
+    //  key evaluation
     for (char c : key) {
+        length++;
         if (islower(c)) {
             lowerCount++;
         } else if (isupper(c)) {
@@ -41,10 +43,12 @@ void evaluateKeyStrength() {
     if (lowerCount > 0) strength++;
     if (upperCount > 0) strength++;
     if (specialCount > 0) strength++;
+    if (length>=12) strength++;
 
     cout << "Your password strength is: ";
 
-    // Strength Bar with ASCII characters
+    // Strength Bar
+
     switch (strength) {
         case 1:
             cout << "Weak\n" << endl;
@@ -55,22 +59,25 @@ void evaluateKeyStrength() {
         case 3:
             cout << "Strong\n" << endl;
             break;
+        case 4:
+            cout<< "Very Strong\n" << endl;
+            break;
         default:
             cout << "Very Weak\n" << endl;
             break;
     }
 
-    // Display strength bar with # (filled) and - (empty)
+     
     cout << "Strength Bar: [";
     for (int i = 0; i < strength; i++) {
         cout << "#";  // Filled part
     }
-    for (int i = strength; i < 3; i++) {
+    for (int i = strength; i < 4; i++) {
         cout << "-";  // Empty part
     }
     cout << "]\n\n";
 
-    // Provide tips to improve weak passwords
+    //  tips  
     if (strength < 3) {
         cout << "Tips to improve your password strength:\n\n";
         if (lowerCount == 0) {

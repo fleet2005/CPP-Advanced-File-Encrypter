@@ -1,5 +1,6 @@
 #include "encryption.h"
- 
+ //input file information put into a string content in the current file.
+ //output file information written in the respective algorithm module.
  
 bool encryptFile(const string& filename, bool encrypt) {
     ifstream inFile(filename);
@@ -15,7 +16,7 @@ bool encryptFile(const string& filename, bool encrypt) {
     int choice = 0;
     while (true) {  
         Sleep(2000);
-        cout<<"\n\n\n";
+        cout<<"\n\n\n"; 
         cout << R"(
     Enter Your Choice of Encryption/Decryption Algorithm:
     
@@ -23,7 +24,7 @@ bool encryptFile(const string& filename, bool encrypt) {
     1: Vigenere Cipher
     2: ROT-13 Encryption
     3: Caesar Cipher
-    4: Base-64 Encryption
+    4: Base-64 Encoding
     5: Hybrid Encryption
     6: Key Strength Checker
     7: Exit
@@ -106,7 +107,6 @@ bool encryptFile(const string& filename, bool encrypt) {
             }
             case 6: {
                 evaluateKeyStrength();   
-                return true;
                 break;
             }
             case 7: {

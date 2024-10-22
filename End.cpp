@@ -4,7 +4,7 @@ using namespace std;
 
 void end() {
     cout<<"\n\n\n\n"<<endl;
-    Sleep(3000);
+    Sleep(3000); //raw string literal multiline content without escape seq and newline
     cout << R"(
 /==========================================================================\
 ||                                                                        ||

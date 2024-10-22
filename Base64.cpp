@@ -2,24 +2,24 @@
 #include <vector>
 
 static const string BASE64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
+//3B input 4B output... Each char is a byte
 bool Base64::encrypt(const string& input, const string& filename) {
     string encoded;
     int val = 0, valb = -6;
     
     for (char c : input) {
         val = (val << 8) + c;
-        valb += 8;
+        valb += 8; 
         while (valb >= 0) {
-            encoded.push_back(BASE64_CHARS[(val >> valb) & 0x3F]);
+            encoded.push_back(BASE64_CHARS[(val >> valb) & 0x3F]); //00111111 6 bits
             valb -= 6;
         }
     }
-
+    
     if (valb > -6) encoded.push_back(BASE64_CHARS[((val << 8) >> (valb + 8)) & 0x3F]);
 
     while (encoded.size() % 4) encoded.push_back('=');
-    
+    //Base64 encoding requires that the output string length be a multiple of 4
     ofstream outFile("encrypted_" + filename);
     if (!outFile) {
         return false;
@@ -43,7 +43,7 @@ bool Base64::decrypt(const string& input, const string& filename) {
         val = (val << 6) + T[c];
         valb += 6;
         if (valb >= 0) {
-            decoded.push_back(char((val >> valb) & 0xFF));
+            decoded.push_back(char((val >> valb) & 0xFF)); // 11111111 8 bits
             valb -= 8;
         }
     }

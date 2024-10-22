@@ -1,6 +1,6 @@
 #include "VigenereCipher.h"
 #include <fstream>
-#include <cctype>
+#include <cctype> //isalpha, toupper
 
 using namespace std;
 

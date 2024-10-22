@@ -1,10 +1,10 @@
 #ifndef ENCRYPTION_H
 #define ENCRYPTION_H
 
-#include <string>
+#include <string> //string content
 #include <fstream>
-#include <iostream>
-#include <windows.h>
+#include <iostream> 
+#include <windows.h> //for sleep
 #include "VigenereCipher.h"
 #include "Base64.h"
 #include "Rot13.h"
